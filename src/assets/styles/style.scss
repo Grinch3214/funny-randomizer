@@ -1,0 +1,9 @@
+@import 'fonts';
+@import 'reset';
+
+body {
+	font-family: 'Montserrat-400';
+	font-weight: 400;
+	background: url('../images/background.jpg') 0 0/cover no-repeat;
+	height: 100%;
+}
