@@ -12,7 +12,7 @@ export default {
 
 <style lang="scss" scoped>
 .star-fall {
-	position: fixed;
+	position: absolute;
 	top: 0;
 	left: 0;
 	bottom: 0;
