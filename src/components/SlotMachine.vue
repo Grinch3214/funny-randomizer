@@ -3,6 +3,9 @@
 		<div class="slot__confim" :class="{ active: confirm }">
 			{{ confirm }}
 		</div>
+		<div class="slot__money">
+			<span>{{ allMoney }}</span>$
+		</div>
 		<ul class="slot__list">
 			<li class="slot__item">
 				<img :src="slotPhotoOne" alt="default img">
@@ -29,6 +32,7 @@ export default {
 		slotThree: null,
 		confirm: null,
 		disabled: false,
+		allMoney: 100
 	}),
 	computed: {
 		slotPhotoOne() {
@@ -64,6 +68,7 @@ export default {
 			this.slotThree = this.randonNumbers();
 			this.isSlotWin();
 			this.disabledButton();
+			this.counterSlotMoney();
 		},
 
 		randonNumbers() {
@@ -72,14 +77,35 @@ export default {
 
 		isSlotWin() {
 			if (this.slotOne === this.slotTwo && this.slotTwo === this.slotThree) {
-				this.confirm = 'You are win'
+				this.allMoney += 100
+				this.confirm = null
+				this.confirm = 'You are win! Full combo!'
 				return null;
+			}
+
+			if(this.slotOne === this.slotThree) {
+				this.allMoney += 30
+				this.confirm = null
+				this.confirm = 'You are win! Combo x2'
+				return null
 			}
 		},
 
 		disabledButton() {
+			if(this.allMoney <= 10) {
+				return this.disabled = true;
+			}
 			this.disabled = true;
 			setTimeout(() => (this.disabled = false), 600)
+		},
+
+		counterSlotMoney() {
+
+			if(this.allMoney <= 10) {
+				return this.allMoney = 0;
+			}
+
+			this.allMoney -= 10;
 		}
 	}
 }
@@ -98,17 +124,26 @@ export default {
 	text-align: center;
 
 	&__confim {
-		min-height: 40px;
+		min-height: 25px;
 		margin-bottom: 10px;
 		transition: all 2.5s ease;
 		text-align: center;
-		font-size: 26px;
+		font-size: 22px;
 		text-transform: uppercase;
 		font-family: 'Montserrat-700';
 		font-weight: 700;
+		text-shadow: 0 0 5px #000;
 		&.active {
 			animation: 4s opacity-title forwards;
 		}
+	}
+
+	&__money {
+		margin-bottom: 15px;
+		font-size: 20px;
+		text-align: right;
+		font-family: 'Montserrat-700';
+		font-weight: 700;
 	}
 
 	&__list{
