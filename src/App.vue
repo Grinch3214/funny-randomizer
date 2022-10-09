@@ -1,5 +1,6 @@
 <template>
   <div id="app" class="app">
+		<star-fall />
 		<div class="pixel">
 			<h1 class="pixel__title">
 				Pixel GAME
@@ -11,14 +12,15 @@
 
 <script>
 import SlotMachine from './components/SlotMachine.vue'
+import StarFall from './components/StarFall.vue'
 
 export default {
   name: 'App',
 	components: {
-		SlotMachine
+		SlotMachine,
+		StarFall
 	},
   data: () => ({
-		isActive: false,
 	}),
 }
 </script>
@@ -30,6 +32,7 @@ export default {
 	justify-content: center;
 	align-items: center;
 	min-height: 100%;
+	overflow: hidden;
 	padding: 0 15px 40px;
 }
 .pixel {
